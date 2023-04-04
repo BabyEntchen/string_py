@@ -209,3 +209,41 @@ class Format:
         for key in values:
             aligned_text += key + " " * ((length + 3) - len(key)) + values[key] + "\n"
         return aligned_text
+
+
+    @staticmethod
+    def table(values: list[list[str]], border: bool = True) -> str:
+        """Create a table
+
+        Parameters
+        ----------
+        :param values:`list[list[str]]`
+            The values you want to print
+        :param border:`True`
+            Set to `False` to remove the border
+        :return:
+            Returns the table as string
+        """
+
+        length = [max([len(str(x)) for x in column]) for column in zip(*values)]
+        if border:
+            table = "\u250C" + "\u2500" * (sum(length) + (3 * len(values) - 1)) + "\u2510\n"
+            for index, row in enumerate(values):
+                table += "\u2502"
+                for i, column in enumerate(row):
+                    table += " " + column + " " * (length[i] - len(column)) + " \u2502"
+                if index == 0:
+                    table += "\n\u251C" + "\u2500" * (sum(length) + (3 * len(values) - 1)) + "\u2524" + "\n"
+                else:
+                    if index != len(values) - 1:
+                        table += "\n\u2502" + "\u2500" * (sum(length) + (3 * len(values) - 1)) + "\u2502" + "\n"
+                    else:
+                        table += "\n\u2514" + "\u2500" * (sum(length) + (3 * len(values) - 1)) + "\u2518"
+        else:
+            table = ""
+            for index, row in enumerate(values):
+                for i, column in enumerate(row):
+                    table += " " + column + " " * (length[i] - len(column)) + " "
+                if index != len(values) - 1:
+                    table += "\n"
+        return table

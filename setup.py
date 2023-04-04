@@ -1,10 +1,13 @@
 from setuptools import setup, find_packages
 import codecs
 import os
+from pathlib import Path
 
-VERSION = '0.0.1'
+
+VERSION = '0.0.2'
 DESCRIPTION = 'Utils for strings in python'
-LONG_DESCRIPTION = 'A package that provides useful functions for strings in python'
+this_directory = Path(__file__).parent
+LONG_DESCRIPTION = (this_directory / "README.md").read_text()
 
 # Setting up
 setup(
@@ -22,8 +25,5 @@ setup(
         "Development Status :: 1 - Planning",
         "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",
-        "Operating System :: Unix",
-        "Operating System :: MacOS :: MacOS X",
-        "Operating System :: Microsoft :: Windows",
     ]
 )
