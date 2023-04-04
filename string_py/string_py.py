@@ -148,7 +148,7 @@ class Str:
         :param length:
             The amount of chars
         :param remove:
-            If set to `True` removes the amount of chars
+            If set to `True` removes `length` of :class:`values`
         """
         if len(self.values) < length:
             raise AttributeError("Length must be smaller then value")
@@ -165,7 +165,7 @@ class Str:
         :param length:
             The amount of chars
         :param remove:
-            If set to `True` removes the amount of chars
+            If set to `True` removes `length` of :class:`values`
         """
         if len(self.values) < length:
             raise AttributeError("Length must be smaller then value")
@@ -193,10 +193,10 @@ class Format:
 
         Parameters
         ----------
-        :param values:`list[str]`
+        :param values:`dict[str, str]`
             Texts to algin {"Left side": "Right side"}
         :return:
-            Returns a string with the key value aligned left and the value right dependent from the keys
+            Returns a string with the key aligned left and the value right dependent from the keys
 
         Examples
         --------
