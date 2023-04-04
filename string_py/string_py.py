@@ -187,6 +187,22 @@ class Str:
 
 class Format:
     """Format texts"""
+
+    @staticmethod
+    def surround(values: str, char: str = "*") -> str:
+        """Surround a text with chars
+
+        Parameters
+        ----------
+        :param values:`str`
+            Text to surround
+        :param char:`*`
+            Char to surround with
+        :return:
+            Returns a string with the text surrounded with certain chars
+        """
+        return f"{char * (len(values) + 4)}\n{char} {values} {char}\n{char * (len(values) + 4)}"
+
     @staticmethod
     def align(values: dict[str, str]):
         """Algin a text
@@ -209,6 +225,8 @@ class Format:
         for key in values:
             aligned_text += key + " " * ((length + 3) - len(key)) + values[key] + "\n"
         return aligned_text
+
+
 
     @staticmethod
     def table(values: list[list[str]], border: bool = True) -> str:
@@ -246,3 +264,5 @@ class Format:
                 if index != len(values) - 1:
                     table += "\n"
         return table
+
+
