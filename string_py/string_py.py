@@ -210,7 +210,6 @@ class Format:
             aligned_text += key + " " * ((length + 3) - len(key)) + values[key] + "\n"
         return aligned_text
 
-
     @staticmethod
     def table(values: list[list[str]], border: bool = True) -> str:
         """Create a table
