@@ -8,7 +8,7 @@ LONG_DESCRIPTION = 'A package that provides useful functions for strings in pyth
 
 # Setting up
 setup(
-    name="py_string",
+    name="string_py",
     version=VERSION,
     author="BabyEntchen",
     author_email="<baby_entchen@web.de>",
