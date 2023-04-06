@@ -12,14 +12,14 @@ class PasswordManager:
 
     def calc_strength(self, points: int):
         print(points)
-        if points < 5:
-            print("Very Bad! you should use a new password. Example: ", Color.basic,
-                  self.generate_password())
-        elif points >= 5:
-            print("Bad! you should use a new password. Example: " + Color.basic,
-                  self.generate_password())
-        elif points <= 13:
+        if points <= 15:
             print("You password is okay. Maybe use a new password. Example: " + self.generate_password())
+        elif points <= 10:
+            print("Bad! You should use a new password. Example: " + Color.basic,
+                  self.generate_password())
+        if points < 5:
+            print("Very Bad! You should use a new password. Example: ", Color.basic,
+                  self.generate_password())
         else:
             print("Your password is fine!")
 
@@ -44,4 +44,3 @@ class PasswordManager:
 
 if __name__ == "__main__":
     PasswordManager(Str(input("Your password: "))).check_password()
-

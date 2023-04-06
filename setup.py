@@ -4,10 +4,11 @@ import os
 from pathlib import Path
 
 
-VERSION = '0.0.2'
+VERSION = '0.1.0'
 DESCRIPTION = 'Utils for strings in python'
 this_directory = Path(__file__).parent
 LONG_DESCRIPTION = (this_directory / "README.md").read_text()
+URL = "https://github.com/BabyEntchen/string_py"
 
 # Setting up
 setup(
@@ -15,6 +16,7 @@ setup(
     version=VERSION,
     author="BabyEntchen",
     author_email="<baby_entchen@web.de>",
+    url=URL,
     description=DESCRIPTION,
     long_description_content_type="text/markdown",
     long_description=LONG_DESCRIPTION,

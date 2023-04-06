@@ -318,7 +318,7 @@ class Format:
         Parameters
         ----------
         :param values:`list[list[str]]`
-            The values you want to print
+            The values to create the table with
         :param border:`True`
             Set to `False` to remove the border
         :return:
