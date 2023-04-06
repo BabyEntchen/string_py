@@ -89,7 +89,7 @@ class Printer:
                 await aio_sleep(speed)
 
 
-class Str:
+class Str(str):
     """Functions to work with strings
 
     Parameters
