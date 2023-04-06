@@ -2,6 +2,7 @@ from datetime import datetime
 from time import sleep
 from asyncio import sleep as aio_sleep
 from random import choices, randint
+import string
 
 
 class Color:
@@ -22,6 +23,7 @@ class Printer:
     :param active:`True`
         If set to False, no more prints are executed. Exception: force Parameter is set to True.
     """
+
     def __init__(self, active: bool = True):
         self.active = active
 
@@ -95,9 +97,16 @@ class Str:
     :param values: `str`
         The value you want to work with
     """
+
     def __init__(self, values: str):
         self.values = values
         self.chars = [*values]
+        self.ascii = {
+            "ascii_lowercase": string.ascii_lowercase,
+            "ascii_uppercase": string.ascii_uppercase,
+            "digits": string.digits,
+            "punctuation": string.punctuation
+        }
 
     def generate(self, length: int = None, min_: int = None, max_: int = None) -> str:
         """Generate a random string out of :class:`values`
@@ -121,6 +130,16 @@ class Str:
         else:
             raise AttributeError("min_ and max_ or length must have a value")
 
+    def remove(self, chars: str) -> str:
+        """Remove chars from string
+
+        Parameters:
+        -----------
+        :param chars:
+            The chars you want to remove
+        """
+        return self.values.replace(chars, "")
+
     def split(self, each: int = None, chars: str = None) -> list[str]:
         """An extension of the built-in .split method. Also split on certain index
 
@@ -136,7 +155,7 @@ class Str:
         if not each and not chars:
             raise AttributeError("each or chars must have a value")
         if each:
-            return [self.values[i:i+each] for i in range(0, len(self.values), each)]
+            return [self.values[i:i + each] for i in range(0, len(self.values), each)]
         else:
             return self.values.split(chars)
 
@@ -174,15 +193,81 @@ class Str:
         else:
             return self.values[-length:]
 
-    def remove(self, chars: str) -> str:
-        """Remove chars from string
+    def __get(self, type_: str, index: bool) -> list[str] | dict[int, str]:
 
-        Parameters:
-        -----------
-        :param chars:
-            The chars you want to remove
+        gets = [] if index is False else {}
+        for num, char in enumerate(self.values):
+            if char in self.ascii[type_]:
+                if index is False:
+                    gets.append(char)
+                else:
+                    gets[num] = char
+        return gets
+
+    def get_upper(self, chars: bool = True, index: bool = False) -> int | list[str] | dict[int, str]:
+        """Get how many upper chars are in :class:`values`
+
+        Parameters
+        ----------
+        :param chars:`True`
+            If set to True, returns a list of all uppercase chars
+            If set to False, returns the number of uppercase chars
+        :param index:`False`
+            If set to True, also returns the Indexes of lower chars (`chars` MUST be `True`)
         """
-        return self.values.replace(chars, "")
+        upper = self.__get("ascii_uppercase", index)
+        return upper if chars else len(upper)
+
+    def get_lower(self, chars: bool = True, index: bool = False) -> int | list[str] | dict[int, str]:
+        """Get how many lower chars are in :class:`values`
+
+        Parameters
+        ----------
+        :param chars:`True`
+            If set to True, returns a list of all lower chars
+            If set to False, returns the number of lower chars
+        :param index:`False`
+            If set to True, also returns the Indexes of lower chars (`chars` MUST be `True`)
+        """
+        if not chars and index:
+            raise AttributeError("If index is set to True, chars can't be False")
+
+        lower = self.__get("ascii_lowercase", index)
+        return lower if chars else len(lower)
+
+    def get_numeric(self, chars: bool = True, index: bool = False) -> int | list[str] | dict[int, str]:
+        """Get how many numeric chars are in :class:`values`
+
+        Parameters
+        ----------
+        :param chars:`True`
+            If set to True, returns a list of all numeric chars
+            If set to False, returns the number of numeric chars
+        :param index:`False`
+            If set to True, also returns the Indexes of numeric chars (`chars` MUST be `True`)
+        """
+        if not chars and index:
+            raise AttributeError("If index is set to True, chars can't be False")
+
+        numeric = self.__get("digits", index)
+        return numeric if chars else len(numeric)
+
+    def get_punctuation(self, chars: bool = True, index: bool = False) -> int | list[str] | dict[int, str]:
+        """Get how many punctuation chars are in :class:`values`
+
+        Parameters
+        ----------
+        :param chars:`True`
+            If set to True, returns a list of all punctuation chars
+            If set to False, returns the number of punctuation chars
+        :param index:`False`
+            If set to True, also returns the Indexes of punctuation chars (`chars` MUST be `True`)
+        """
+        if not chars and index:
+            raise AttributeError("If index is set to True, chars can't be False")
+
+        punctuation = self.__get("punctuation", index)
+        return punctuation if chars else len(punctuation)
 
 
 class Format:
@@ -205,12 +290,12 @@ class Format:
 
     @staticmethod
     def align(values: dict[str, str]):
-        """Algin a text
+        """Align a text
 
         Parameters
         ----------
         :param values:`dict[str, str]`
-            Texts to algin {"Left side": "Right side"}
+            Texts to align {"Left side": "Right side"}
         :return:
             Returns a string with the key aligned left and the value right dependent from the keys
 
@@ -225,8 +310,6 @@ class Format:
         for key in values:
             aligned_text += key + " " * ((length + 3) - len(key)) + values[key] + "\n"
         return aligned_text
-
-
 
     @staticmethod
     def table(values: list[list[str]], border: bool = True) -> str:
@@ -264,5 +347,3 @@ class Format:
                 if index != len(values) - 1:
                     table += "\n"
         return table
-
-
