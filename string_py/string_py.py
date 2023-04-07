@@ -139,7 +139,7 @@ class Str(str):
             The chars you want to remove
         """
         if type(chars) is str:
-            chars = [chars]
+            list(chars)
         for x in chars:
             self.values = self.values.replace(x, "")
         return self.values
