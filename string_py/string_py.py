@@ -130,7 +130,7 @@ class Str(str):
         else:
             raise AttributeError("min_ and max_ or length must have a value")
 
-    def remove(self, chars: str) -> str:
+    def remove(self, chars: str | list[str]) -> str:
         """Remove chars from string
 
         Parameters:
@@ -138,7 +138,11 @@ class Str(str):
         :param chars:
             The chars you want to remove
         """
-        return self.values.replace(chars, "")
+        if type(chars) is str:
+            list(chars)
+        for x in chars:
+            self.values.replace(x, "")
+        return self.values
 
     def split(self, each: int = None, chars: str = None) -> list[str]:
         """An extension of the built-in .split method. Also split on certain index
