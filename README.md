@@ -37,6 +37,15 @@ print(Str("Hello World!").first(5))
 ```
 Hello
 ```
+## Information Example
+```python
+from string_py import Str
+
+print(Str("Hello World!").get_upper(index=True))
+```
+```
+{0: 'H', 6: 'W'}
+```
 ## Printer Example
 ```python
 from string_py import Printer

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "string_py"
+authors = [
+    {name = "BabyEntchen", email = "baby_entchen@web.de"},
+]
+description = "Utils for strings in python"
+readme = "README.md"
+requires-python = ">=3.7"
+keywords=['python', 'string', 'strings', 'utils', 'string utils', 'random', 'random strings', 'formatting', 'formatter']
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = []
+dynamic = ["version"]
