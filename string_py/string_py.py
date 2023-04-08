@@ -130,7 +130,7 @@ class Str(str):
         else:
             raise AttributeError("min_ and max_ or length must have a value")
 
-    def remove(self, chars: str | list[str]) -> str:
+    def remove(self, *chars: str) -> str:
         """Remove chars from string
 
         Parameters:
@@ -138,8 +138,6 @@ class Str(str):
         :param chars:
             The chars you want to remove
         """
-        if type(chars) is str:
-            list(chars)
         for x in chars:
             self.values = self.values.replace(x, "")
         return self.values
@@ -198,7 +196,6 @@ class Str(str):
             return self.values[-length:]
 
     def __get(self, type_: str, index: bool) -> list[str] | dict[int, str]:
-
         gets = [] if index is False else {}
         for num, char in enumerate(self.values):
             if char in self.ascii[type_]:
