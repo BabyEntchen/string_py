@@ -4,7 +4,7 @@ import os
 from pathlib import Path
 
 
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 DESCRIPTION = 'Utils for strings in python'
 this_directory = Path(__file__).parent
 LONG_DESCRIPTION = (this_directory / "README.md").read_text()

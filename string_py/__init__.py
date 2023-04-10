@@ -1,5 +1,5 @@
 __title__ = "string_py"
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __license__ = "MIT"
 __author__ = "BabyEntchen"
 __copyright__ = "Copyright 2023 BabyEntchen"
