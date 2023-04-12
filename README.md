@@ -2,6 +2,7 @@
 
 
 [![PyPI](https://img.shields.io/pypi/v/string-py?style=flat-square)](https://pypi.org/project/string-py/)
+[![Documentation](https://readthedocs.org/projects/aioeasypillow/badge/?version=latest&style=flat-square)](https://string-py.readthedocs.io/en/latest/)
 
 A Python package to simplify working with strings
 
