@@ -21,7 +21,7 @@ setup(
     long_description_content_type="text/markdown",
     long_description=LONG_DESCRIPTION,
     packages=find_packages(),
-    install_requires=["piccolo_theme"],
+    install_requires=[],
     keywords=['python', 'string', 'strings', 'utils', 'string utils', 'random', 'random strings', 'formatting', 'formatter'],
     classifiers=[
         "Development Status :: 1 - Planning",
