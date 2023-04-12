@@ -7,7 +7,6 @@ name = "string_py"
 authors = [
     {name = "BabyEntchen", email = "baby_entchen@web.de"},
 ]
-urls = ({'Documentation': 'https://string-py.readthedocs.io/en/latest/'})
 description = "Utils for strings in python"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -18,3 +17,7 @@ classifiers = [
 ]
 dependencies = []
 dynamic = ["version"]
+
+[project.urls]
+GitHub = "https://github.com/BabyEntchen/string_py"
+Documentation = "https://string-py.readthedocs.io"
