@@ -98,9 +98,9 @@ class Str(str):
         The value you want to work with
     """
 
-    def __init__(self, values: str):
-        self.values = values
-        self.chars = [*values]
+    def __init__(self, values: str | int):
+        self.values = str(values)
+        self.chars = [*self.values]
         self.ascii = {
             "ascii_lowercase": string.ascii_lowercase,
             "ascii_uppercase": string.ascii_uppercase,
