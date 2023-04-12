@@ -4,13 +4,13 @@ import os
 from pathlib import Path
 
 
-VERSION = '0.1.1'
+VERSION = '0.1.2'
 DESCRIPTION = 'Utils for strings in python'
 this_directory = Path(__file__).parent
 LONG_DESCRIPTION = (this_directory / "README.md").read_text()
 URL = "https://github.com/BabyEntchen/string_py"
 PROJECT_URLS = {
-    "Documentation": "https://aioeasypillow.readthedocs.io/en/latest/",
+    "Documentation": "https://string-py.readthedocs.io/en/latest/",
 },
 
 # Setting up
