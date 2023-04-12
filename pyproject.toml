@@ -15,5 +15,5 @@ license = {text = "MIT"}
 classifiers = [
     "Programming Language :: Python :: 3",
 ]
-dependencies = []
+dependencies = ["piccolo_theme"]
 dynamic = ["version"]
