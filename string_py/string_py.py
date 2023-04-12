@@ -18,10 +18,9 @@ class Color:
 class Printer:
     """Adds new print methods to work with.
 
-    Parameters
-    ----------
-    :param active:`True`
+    :param active: `True`
         If set to False, no more prints are executed. Exception: force Parameter is set to True.
+
     """
 
     def __init__(self, active: bool = True):
@@ -30,16 +29,15 @@ class Printer:
     def time(self, args: str, dt: bool = True, force: bool = False, error: bool = False) -> None:
         """ Timestamp print: Print with the current day and time.
 
-        Parameters
-        ----------
-        :param args:`str`
+        :param args: `str`
             The text to print.
-        :param dt:`True`
+        :param dt: `True`
             Set to `False` to turn off timestamp.
-        :param force:`False`
+        :param force: `False`
             Set to `True` to print always, even if :class:`active` is set to False.
-        :param error:`False`
+        :param error: `False`
             Set to `True` to print always, even if :class:`active` is set to False, gets highlighted with red color.
+
         """
         if self.active or force or error:
             color = Color.error if error else Color.force if force else Color.basic
@@ -51,16 +49,15 @@ class Printer:
     def slow(self, args: str, speed: float = 0.2, force: bool = False, error: bool = False) -> None:
         """Slow print: Char after char gets printed in a certain speed
 
-        Parameters
-        ----------
-        :param args:`str`
+        :param args: `str`
             The text to print.
-        :param speed:`0.1`
+        :param speed: `0.1`
             The speed in wich the chars will get printed out
-        :param force:`False`
+        :param force: `False`
             Set to `True` to print always, even if :class:`active` is set to False.
-        :param error:`False`
+        :param error: `False`
             Set to `True` to print always, even if :class:`active` is set to False, gets highlighted with red color.
+
         """
         if self.active or force or error:
             color = Color.error if error else Color.force if force else Color.basic
@@ -71,16 +68,15 @@ class Printer:
     async def aio_slow(self, args: str, speed: float = 0.1, force: bool = False, error: bool = False) -> None:
         """Async slow print: Char after char gets printed in a certain speed
 
-        Parameters
-        ----------
-        :param args:`str`
+        :param args: `str`
             The text to print.
-        :param speed:`0.1`
+        :param speed: `0.1`
             The speed in wich the chars will get printed out
-        :param force:`False`
+        :param force: `False`
             Set to `True` to print always, even if :class:`active` is set to False.
-        :param error:`False`
+        :param error: `False`
             Set to `True` to print always, even if :class:`active` is set to False, gets highlighted with red color.
+
         """
         if self.active or force or error:
             color = Color.error if error else Color.force if force else Color.basic
@@ -92,10 +88,9 @@ class Printer:
 class Str(str):
     """Functions to work with strings
 
-    Parameters
-    ----------
     :param values: `str`
         The value you want to work with
+
     """
 
     def __init__(self, values: str | int):
@@ -110,6 +105,7 @@ class Str(str):
 
     def generate(self, length: int = None, min_: int = None, max_: int = None) -> str:
         """Generate a random string out of :class:`values`
+
         :param length:
             Generate with certain length
         :param min_:
@@ -118,6 +114,7 @@ class Str(str):
             Generate with random length, `min_` required
         :return:
             Returns random string out of :class:`values` with length out of parameters
+
         """
         if (min_ is None and max_ is None) and length is None:
             raise AttributeError("min_ and max_ or length must have a value")
@@ -133,10 +130,9 @@ class Str(str):
     def remove(self, *chars: str) -> str:
         """Remove chars from string
 
-        Parameters:
-        -----------
         :param chars:
             The chars you want to remove
+
         """
         for x in chars:
             self.values = self.values.replace(x, "")
@@ -145,14 +141,13 @@ class Str(str):
     def split(self, each: int = None, chars: str = None) -> list[str]:
         """An extension of the built-in .split method. Also split on certain index
 
-        Parameters
-        ----------
         :param each:
             The index you want to split at
         :param chars:
             The char or word you want to split at
         :return:
             Returns list with splittet :class:`values`
+
         """
         if not each and not chars:
             raise AttributeError("each or chars must have a value")
@@ -164,12 +159,11 @@ class Str(str):
     def first(self, length: int = 1, remove=False) -> str:
         """A simplification for getting/removing the first chars in a string
 
-        Parameters:
-        -----------
         :param length:
             The amount of chars
         :param remove:
             If set to `True` removes `length` of :class:`values`
+
         """
         if len(self.values) < length:
             raise AttributeError("Length must be smaller then value")
@@ -181,12 +175,11 @@ class Str(str):
     def last(self, length: int = 1, remove=False) -> str:
         """A simplification for getting/removing the last chars in a string
 
-        Parameters:
-        -----------
         :param length:
             The amount of chars
         :param remove:
             If set to `True` removes `length` of :class:`values`
+
         """
         if len(self.values) < length:
             raise AttributeError("Length must be smaller then value")
@@ -208,13 +201,12 @@ class Str(str):
     def get_upper(self, chars: bool = True, index: bool = False) -> int | list[str] | dict[int, str]:
         """Get how many upper chars are in :class:`values`
 
-        Parameters
-        ----------
-        :param chars:`True`
+        :param chars: `True`
             If set to True, returns a list of all uppercase chars
             If set to False, returns the number of uppercase chars
-        :param index:`False`
+        :param index: `False`
             If set to True, also returns the Indexes of lower chars (`chars` MUST be `True`)
+
         """
         upper = self.__get("ascii_uppercase", index)
         return upper if chars else len(upper)
@@ -222,13 +214,12 @@ class Str(str):
     def get_lower(self, chars: bool = True, index: bool = False) -> int | list[str] | dict[int, str]:
         """Get how many lower chars are in :class:`values`
 
-        Parameters
-        ----------
-        :param chars:`True`
+        :param chars: `True`
             If set to True, returns a list of all lower chars
             If set to False, returns the number of lower chars
-        :param index:`False`
+        :param index: `False`
             If set to True, also returns the Indexes of lower chars (`chars` MUST be `True`)
+
         """
         if not chars and index:
             raise AttributeError("If index is set to True, chars can't be False")
@@ -239,13 +230,12 @@ class Str(str):
     def get_numeric(self, chars: bool = True, index: bool = False) -> int | list[str] | dict[int, str]:
         """Get how many numeric chars are in :class:`values`
 
-        Parameters
-        ----------
-        :param chars:`True`
+        :param chars: `True`
             If set to True, returns a list of all numeric chars
             If set to False, returns the number of numeric chars
-        :param index:`False`
+        :param index: `False`
             If set to True, also returns the Indexes of numeric chars (`chars` MUST be `True`)
+
         """
         if not chars and index:
             raise AttributeError("If index is set to True, chars can't be False")
@@ -256,13 +246,12 @@ class Str(str):
     def get_punctuation(self, chars: bool = True, index: bool = False) -> int | list[str] | dict[int, str]:
         """Get how many punctuation chars are in :class:`values`
 
-        Parameters
-        ----------
-        :param chars:`True`
+        :param chars: `True`
             If set to True, returns a list of all punctuation chars
             If set to False, returns the number of punctuation chars
-        :param index:`False`
+        :param index: `False`
             If set to True, also returns the Indexes of punctuation chars (`chars` MUST be `True`)
+
         """
         if not chars and index:
             raise AttributeError("If index is set to True, chars can't be False")
@@ -275,74 +264,38 @@ class Format:
     """Format texts"""
 
     @staticmethod
-    def surround(values: str, all_: str = None,
-                 left: str = "\u2502",
-                 top_bottom: str = "\u2500",
-                 top_left: str = "\u250c",
-                 top_right: str = "\u2510",
-                 bottom_left: str = "\u2514",
-                 bottom_right: str = "\u2518"
-                 ) -> str:
+    def surround(values: str, char: str = "*") -> str:
         """Surround a text with chars
 
-        Parameters
-        ----------
-        :param values:`str`
+        :param values: `str`
             Text to surround
-        :param all_:
-            Char to surround everything with (Overrides all other chars)
-        :param bottom_right:
-            Char to surround the bottom right corner with
-        :param bottom_left:
-            Char to surround the bottom left corner with
-        :param top_right:
-            Char to surround the top right corner with
-        :param top_left:
-            Char to surround the top left corner with
-        :param left:
-            Char to surround the left side with
-        :param top_bottom:
-            Char to surround the top and bottom side with
+        :param char: `*`
+            Char to surround with
         :return:
             Returns a string with the text surrounded with certain chars
+
         """
-
-        if all_:
-            top_bottom = all_
-            left = all_
-            top_left = all_
-            top_right = all_
-            bottom_left = all_
-            bottom_right = all_
-
-        values = values.split("\n")
-        length = max([len(x) for x in values])
-        text = ""
-        for num, value in enumerate(values):
-            if num == 0:
-                text += top_left + top_bottom * length + top_right + "\n"
-            text += left + value + " " * (length - len(value)) + left + "\n"
-            if num == len(values) - 1:
-                text += bottom_left + top_bottom * length + bottom_right
-        return text
-
+        return f"{char * (len(values) + 4)}\n{char} {values} {char}\n{char * (len(values) + 4)}"
 
     @staticmethod
     def align(values: dict[str, str]):
         """Align a text
 
-        Parameters
-        ----------
-        :param values:`dict[str, str]`
+        :param values: `dict[str, str]`
             Texts to align {"Left side": "Right side"}
         :return:
             Returns a string with the key aligned left and the value right dependent from the keys
 
         Examples
         --------
-        values = {"Username:": "John", "Register Date:": "01.01.2001"}
-        Username:        John
-        Register Date:   01.01.2001
+
+        .. code-block::
+
+            values = {"Username:": "John", "Register Date:": "01.01.2001"}
+
+            Username:        John
+            Register Date:   01.01.2001
+
         """
         length = max([len(x) for x in list(values.keys())])
         aligned_text = ""
@@ -354,14 +307,13 @@ class Format:
     def table(values: list[list[str]], border: bool = True) -> str:
         """Create a table
 
-        Parameters
-        ----------
-        :param values:`list[list[str]]`
+        :param values: `list[list[str]]`
             The values to create the table with
-        :param border:`True`
+        :param border: `True`
             Set to `False` to remove the border
         :return:
             Returns the table as string
+
         """
 
         length = [max([len(str(x)) for x in column]) for column in zip(*values)]
