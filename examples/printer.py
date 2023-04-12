@@ -4,4 +4,4 @@ print = Printer()
 
 print.time("Hello World!")
 print.slow("Hello World!")
-# Changes only visible in console
+# Only visible in console
