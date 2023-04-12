@@ -9,6 +9,9 @@ DESCRIPTION = 'Utils for strings in python'
 this_directory = Path(__file__).parent
 LONG_DESCRIPTION = (this_directory / "README.md").read_text()
 URL = "https://github.com/BabyEntchen/string_py"
+PROJECT_URLS = {
+    "Documentation": "https://aioeasypillow.readthedocs.io/en/latest/",
+},
 
 # Setting up
 setup(
@@ -17,6 +20,7 @@ setup(
     author="BabyEntchen",
     author_email="<baby_entchen@web.de>",
     url=URL,
+    project_urls=PROJECT_URLS,
     description=DESCRIPTION,
     long_description_content_type="text/markdown",
     long_description=LONG_DESCRIPTION,
