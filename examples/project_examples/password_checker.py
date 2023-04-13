@@ -11,7 +11,6 @@ class PasswordManager:
         return Str(string.ascii_letters + string.digits + ".,?!$#").generate(min_=20, max_=30)
 
     def calc_strength(self, points: int):
-        print(points)
         if points <= 15:
             print("You password is okay. Maybe use a new password. Example: " + self.generate_password())
         elif points <= 10:
