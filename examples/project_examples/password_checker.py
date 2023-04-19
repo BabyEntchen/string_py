@@ -7,7 +7,7 @@ class PasswordManager:
         self.password = password
 
     @staticmethod
-    def generate_password() -> str:
+    def generate_password() -> Str:
         return Str(string.ascii_letters + string.digits + ".,?!$#").generate(min_=20, max_=30)
 
     def calc_strength(self, points: int):
