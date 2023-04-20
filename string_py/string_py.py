@@ -273,8 +273,7 @@ class Format:
                  bottom_right: str = "\u2518"
                  ) -> str:
         """Surround a text with chars
-        Parameters
-        ----------
+
         :param values:`str`
             Text to surround
         :param all_:
@@ -293,6 +292,7 @@ class Format:
             Char to surround the top and bottom side with
         :return:
             Returns a string with the text surrounded with certain chars
+
         """
 
         if all_:
