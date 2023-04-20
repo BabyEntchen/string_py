@@ -264,18 +264,55 @@ class Format:
     """Format texts"""
 
     @staticmethod
-    def surround(values: str, char: str = "*") -> str:
+    def surround(values: str, all_: str = None,
+                 left: str = "\u2502",
+                 top_bottom: str = "\u2500",
+                 top_left: str = "\u250c",
+                 top_right: str = "\u2510",
+                 bottom_left: str = "\u2514",
+                 bottom_right: str = "\u2518"
+                 ) -> str:
         """Surround a text with chars
-
-        :param values: `str`
+        Parameters
+        ----------
+        :param values:`str`
             Text to surround
-        :param char: `*`
-            Char to surround with
+        :param all_:
+            Char to surround everything with (Overrides all other chars)
+        :param bottom_right:
+            Char to surround the bottom right corner with
+        :param bottom_left:
+            Char to surround the bottom left corner with
+        :param top_right:
+            Char to surround the top right corner with
+        :param top_left:
+            Char to surround the top left corner with
+        :param left:
+            Char to surround the left side with
+        :param top_bottom:
+            Char to surround the top and bottom side with
         :return:
             Returns a string with the text surrounded with certain chars
-
         """
-        return f"{char * (len(values) + 4)}\n{char} {values} {char}\n{char * (len(values) + 4)}"
+
+        if all_:
+            top_bottom = all_
+            left = all_
+            top_left = all_
+            top_right = all_
+            bottom_left = all_
+            bottom_right = all_
+
+        values = values.split("\n")
+        length = max([len(x) for x in values])
+        text = ""
+        for num, value in enumerate(values):
+            if num == 0:
+                text += top_left + top_bottom * length + top_right + "\n"
+            text += left + value + " " * (length - len(value)) + left + "\n"
+            if num == len(values) - 1:
+                text += bottom_left + top_bottom * length + bottom_right
+        return text
 
     @staticmethod
     def align(values: dict[str, str]):
