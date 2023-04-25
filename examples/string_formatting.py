@@ -6,12 +6,12 @@ print(Format.align(values={"Username:": "John", "Register Date:": "01.01.2001"})
 # Username:        John
 # Register Date:   01.01.2001
 
-print(Format.surround("Hello World", char="*"))
+print(Format.surround("Hello World"))
 # Output:
 #
-# ***************
-# * Hello World *
-# ***************
+# ┌───────────┐
+# │Hello World│
+# └───────────┘
 
 print(Format.table([["Product", "Value", "Sold"], ["Carrot", "3.99$", "34"], ["Milk", "5$", "103"]]))
 # Output:
