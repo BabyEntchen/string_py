@@ -96,7 +96,7 @@ class Str(str):
     def __init__(self, values: str | int):
         self.values = str(values)
         self.chars = [*self.values]
-        self.ascii = {
+        self._ascii = {
             "ascii_lowercase": string.ascii_lowercase,
             "ascii_uppercase": string.ascii_uppercase,
             "digits": string.digits,
@@ -191,7 +191,7 @@ class Str(str):
     def __get(self, type_: str, index: bool) -> list[str] | dict[int, str]:
         gets = [] if index is False else {}
         for num, char in enumerate(self.values):
-            if char in self.ascii[type_]:
+            if char in self._ascii[type_]:
                 if index is False:
                     gets.append(char)
                 else:
