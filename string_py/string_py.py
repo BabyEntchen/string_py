@@ -298,7 +298,6 @@ class Format:
             Returns a string with the text surrounded with certain chars
 
         """
-
         if all_:
             top = all_
             bottom = all_
@@ -372,7 +371,6 @@ class Format:
             Returns the table as string
 
         """
-
         length = [max([len(str(x)) for x in column]) for column in zip(*values)]
         if border:
             table = "\u250C" + "\u2500" * (sum(length) + (3 * len(values) - 1)) + "\u2510\n"
@@ -426,8 +424,6 @@ class Format:
         :return: `str`
 
         """
-
-
         embed = []
         if author:
             embed.append(author)
