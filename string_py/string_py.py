@@ -264,9 +264,11 @@ class Format:
     """Format texts"""
 
     @staticmethod
-    def surround(values: str, all_: str = None,
+    def surround(values: str | list[str],
+                 all_: str = None,
                  left: str = "\u2502",
-                 top_bottom: str = "\u2500",
+                 top: str = "\u2500",
+                 bottom: str = "\u2500",
                  top_left: str = "\u250c",
                  top_right: str = "\u2510",
                  bottom_left: str = "\u2514",
@@ -274,6 +276,10 @@ class Format:
                  ) -> str:
         """Surround a text with chars
 
+        :param bottom:
+            Char to surround the bottom with
+        :param top:
+            Char to surround the top with
         :param values:`str`
             Text to surround
         :param all_:
@@ -288,30 +294,44 @@ class Format:
             Char to surround the top left corner with
         :param left:
             Char to surround the left side with
-        :param top_bottom:
-            Char to surround the top and bottom side with
         :return:
             Returns a string with the text surrounded with certain chars
 
         """
 
         if all_:
-            top_bottom = all_
+            top = all_
+            bottom = all_
             left = all_
             top_left = all_
             top_right = all_
             bottom_left = all_
             bottom_right = all_
 
-        values = values.split("\n")
-        length = max([len(x) for x in values])
         text = ""
-        for num, value in enumerate(values):
-            if num == 0:
-                text += top_left + top_bottom * length + top_right + "\n"
+        length_values = []
+
+        for part_values in values if isinstance(values, list) else [values]:
+
+            length_values += part_values.split("\n")
+
+        length = max([len(x) for x in length_values])
+        row_values = []
+
+        for num1, part_values in enumerate(values if isinstance(values, list) else [values]):
+            row_values += (part_values + ("\n" + bottom * length if num1 != len(
+                values if isinstance(values, list) else [values]) - 1 else "")).split("\n")
+
+
+        length = max([len(x) for x in row_values])
+        for num2, value in enumerate(row_values):
+            if num2 == 0:
+                text += top_left + top * length + top_right + "\n"
             text += left + value + " " * (length - len(value)) + left + "\n"
-            if num == len(values) - 1:
-                text += bottom_left + top_bottom * length + bottom_right
+            if num2 == len(row_values) - 1:
+                text += bottom_left + bottom * length + bottom_right
+
+
         return text
 
     @staticmethod
@@ -375,3 +395,54 @@ class Format:
                 if index != len(values) - 1:
                     table += "\n"
         return table
+
+
+    @staticmethod
+    def embed(
+            title: str,
+            description: str = None,
+            url: str = None,
+            fields: list[dict[str, str]] = None,
+            footer: str = None,
+            author: str = None,
+            image: str = None
+    ):
+        """Create an embed
+
+        :param title: `str`
+            Title of the embed
+        :param description: `str`
+            Description of the embed
+        :param url: `str`
+            Url of the embed
+        :param fields: `list[dict[str, str]]`
+            Fields of the embed
+        :param footer: `str`
+            Footer of the embed
+        :param author: `str`
+            Author of the embed
+        :param image: `str`
+            Image of the embed
+        :return: `str`
+
+        """
+
+
+        embed = []
+        if author:
+            embed.append(author)
+        if title:
+            embed.append(title)
+        if description:
+            embed.append(description)
+        if url:
+            embed.append(url)
+        if fields:
+            for field in fields:
+                embed.append(field["name"] + ": " + field["value"])
+        if footer:
+            embed.append(footer)
+
+        if image:
+            embed.append(image)
+        return Format.surround(embed)
